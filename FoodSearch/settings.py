@@ -26,7 +26,10 @@ SECRET_KEY = '8zzj6xii1f=q^r_l6u#@#k=zd^gw(feg5wcf$zve&6$s3vsrg5'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 # Application definition
 
@@ -37,8 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'django.contrib.sites',
+    'allauth.socialaccount.providers.google',
 ]
-
+SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
