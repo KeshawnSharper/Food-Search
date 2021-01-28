@@ -32,6 +32,8 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # Application definition
+CORS_ORIGIN_ALLOW_ALL = True # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
+CORS_ALLOW_CREDENTIALS = True
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -45,6 +47,12 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django.contrib.sites',
     'allauth.socialaccount.providers.google',
+    'rest_auth',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth.registration',
+    'djoser',
+
 ]
 SITE_ID = 1
 MIDDLEWARE = [
