@@ -54,13 +54,13 @@
 </div>
   <form @submit.prevent="submit">
 
-			<p class="formLabel">Email</p>
+			<p class="formLabel">Username</p>
 		<div class="form-item">
-			<input name="email" id="email" class="form-style" autocomplete="off"/>
+			<input v-model="username" name="email" id="email" class="form-style" autocomplete="off"/>
 		</div>
     			<p class="formLabel">Password</p>
 		<div class="form-item">
-			<input type="password" name="password" id="password" class="form-style" />
+			<input v-model="password" type="password" name="password" id="password" class="form-style" />
 			<!-- <div class="pw-view"><i class="fa fa-eye"></i></div> -->
 			<p><a href="#" ><small>Forgot Password ?</small></a></p>	
 		</div>
@@ -77,12 +77,39 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import { ref } from "vue";
 export default{
+  data: () => ({
+    
+  }),
   setup(){
+    let username = ref("")
+    let password = ref("")
     function submit()
-    { console.log("form-item") } 
+    { 
+      fetch('http://127.0.0.1:8000/api/token/', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+ "username": username.value,
+ "password": password.value
+}),
+})
+.then(response => response.json())
+.then(data => {
+  console.log('Success:', username.value);
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
+      
+      } 
     return {
-      submit
+      submit,
+      username,
+      password
     }
   }
 }
