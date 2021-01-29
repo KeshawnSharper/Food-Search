@@ -35,6 +35,12 @@ AUTHENTICATION_BACKENDS = [
 CORS_ORIGIN_ALLOW_ALL = True # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
 CORS_ALLOW_CREDENTIALS = True
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -52,6 +58,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth.registration',
     'djoser',
+    
 
 ]
 SITE_ID = 1
