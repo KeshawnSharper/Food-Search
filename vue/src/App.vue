@@ -52,9 +52,11 @@
 </g>
 </svg>
 </div>
+  <form @submit.prevent="submit">
+
 			<p class="formLabel">Email</p>
 		<div class="form-item">
-			<input type="email" name="email" id="email" class="form-style" autocomplete="off"/>
+			<input name="email" id="email" class="form-style" autocomplete="off"/>
 		</div>
     			<p class="formLabel">Password</p>
 		<div class="form-item">
@@ -64,16 +66,27 @@
 		</div>
 		<div class="form-item">
 		<p class="pull-left"><a href="#"><small>Register</small></a></p>
-		<input type="submit" class="login pull-right" value="Log In">
 		<div class="clear-fix"></div>
 		</div>
+     <button>Submit</button>
+  </form>
 </div>
 </div>
 </body>
 </template>
 
-<script setup>
+<script>
 import HelloWorld from './components/HelloWorld.vue'
+export default{
+  setup(){
+    function submit()
+    { console.log("form-item") } 
+    return {
+      submit
+    }
+  }
+}
+  
 </script>
 
 <style>
