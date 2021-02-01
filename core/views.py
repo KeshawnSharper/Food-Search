@@ -62,3 +62,20 @@ class TestView(APIView):
 		# 	if int((a)['id']) == int(request.data['id']):
 		# 		data.append(a)
 		# return Response(data)
+class RecipesView(APIView):
+	def get(self,request,*args,**kwargs):
+		connection = sqlite3.connect('/Users/lambda_school_loaner_182/Documents/Food-Search/db.sqlite3')
+		cursor = connection.cursor()
+		print(kwargs)
+		if kwargs and "user_id" in kwargs:
+			cursor.execute("SELECT * FROM saved_recipes WHERE user_id=?", (kwargs["user_id"],))
+			results = cursor.fetchall()
+		else:
+			cursor.execute("SELECT * FROM saved_recipes")
+			results = cursor.fetchall()
+		data = []
+		for row in results:
+			print(row[0])
+			data.append(row)
+		cursor.close()
+		return Response(data)
