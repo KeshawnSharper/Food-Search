@@ -92,12 +92,16 @@ class RecipesView(APIView):
 	def put(self,request,*args,**kwargs):
 		connection = sqlite3.connect('/Users/lambda_school_loaner_182/Documents/Food-Search/db.sqlite3')
 		cursor = connection.cursor()
+		print(kwargs['id'])
 		for key in request.data:
-			if key == id:
-				pass
-			else:
-				print(key)  
-				cursor.execute(f"UPDATE saved_recipes SET {key} = ? WHERE id = ?;",(request.data[key],request.data['id']) )
+				cursor.execute(f"UPDATE saved_recipes SET {key} = ? WHERE id = ?;",(request.data[key],kwargs['id']) )
+		connection.commit()
+		return Response(request.data)
+	def delete(self,request,*args,**kwargs):
+		connection = sqlite3.connect('/Users/lambda_school_loaner_182/Documents/Food-Search/db.sqlite3')
+		cursor = connection.cursor()
+		print(kwargs['id'])
+		cursor.execute("DELETE FROM saved_recipes WHERE id = ?;",(kwargs['id']) )
 		connection.commit()
 		return Response(request.data)
 		
