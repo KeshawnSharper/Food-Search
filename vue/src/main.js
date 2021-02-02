@@ -44,7 +44,6 @@ const store = new Vuex.Store({
               })
               .then(response => response.json())
               .then((data) => {
-                console.log(data.results)
                 state.recipes.value = data.results
               })
               .catch((error) => {
