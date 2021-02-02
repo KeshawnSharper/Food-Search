@@ -4,10 +4,11 @@ import VueRouter from "vue-router";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
-
+import Vuex from 'vuex'
 
 
 Vue.use(VueRouter);
+Vue.use(Vuex)
 
 Vue.config.productionTip = false;
 
@@ -28,8 +29,32 @@ const routes = [
 const router = new VueRouter({
   routes // short for `routes: routes`
 });
+const store = new Vuex.Store({
+    state: {
+      recipes: [],
+      ingredients: [],
+    },
+    mutations: {
+        getIngredients (state) {
+            fetch('https://api.spoonacular.com/recipes/716429/information?apiKey=e8bdd0a88cb74532a82c0427fb822da2&includeNutrition=true', {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              })
+              .then(response => response.json())
+              .then((data) => {
+                state.recipes.value = data
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              })
+      }
+    }
+  })
 
 new Vue({
   render: (h) => h(App),
+  store,
   router
 }).$mount("#app");

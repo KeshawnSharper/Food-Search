@@ -79,6 +79,7 @@ export default{
     username: '',
     password: '',
   }),
+
   methods: {
     submit: function () {
       fetch('http://127.0.0.1:8000/api/token/', {
@@ -97,8 +98,8 @@ export default{
 })
 .catch((error) => {
   console.error('Error:', error);
-});
-    },
+})
+    }
   },
 }
 </script>
