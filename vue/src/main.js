@@ -36,7 +36,7 @@ const store = new Vuex.Store({
     },
     mutations: {
         getIngredients (state) {
-            fetch('https://api.spoonacular.com/recipes/716429/information?apiKey=e8bdd0a88cb74532a82c0427fb822da2&includeNutrition=true', {
+            fetch('https://api.spoonacular.com/recipes/complexSearch?query=pasta&maxFat=25&number=20&apiKey=e8bdd0a88cb74532a82c0427fb822da2&includeNutrition=true', {
                 method: 'GET',
                 headers: {
                   'Content-Type': 'application/json',
@@ -44,7 +44,8 @@ const store = new Vuex.Store({
               })
               .then(response => response.json())
               .then((data) => {
-                state.recipes.value = data
+                console.log(data.results)
+                state.recipes.value = data.results
               })
               .catch((error) => {
                 console.error('Error:', error);
