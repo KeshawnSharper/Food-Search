@@ -3,6 +3,8 @@ import App from "./App.vue";
 import VueRouter from "vue-router";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Home from "./components/Home";
+
 
 
 Vue.use(VueRouter);
@@ -16,7 +18,8 @@ Vue.config.productionTip = false;
 // We'll talk about nested routes later.
 const routes = [
     { path: "/login", component: Login, name: 'login' },
-    { path: "/register", component: Register, name: 'register' }
+    { path: "/register", component: Register, name: 'register' },
+    { path: "/home", component: Home, name: 'home' },
 ];
 
 // 3. Create the router instance and pass the `routes` option
