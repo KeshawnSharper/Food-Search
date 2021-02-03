@@ -35,22 +35,26 @@ const store = new Vuex.Store({
       ingredients: [],
     },
     mutations: {
-        getIngredients (state) {
-            fetch('https://api.spoonacular.com/recipes/complexSearch?query=pasta&maxFat=25&number=20&apiKey=e8bdd0a88cb74532a82c0427fb822da2&includeNutrition=true', {
-                method: 'GET',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-              })
-              .then(response => response.json())
-              .then((data) => {
-                state.recipes.value = data.results
-              })
-              .catch((error) => {
-                console.error('Error:', error);
-              })
-      }
-    }
+        
+        GET_RECIPES(state, recipes) {
+          state.recipes = recipes
+        }
+      },
+         
+           
+            actions: {
+                fetchRecipes({ commit }) {
+                    fetch('https://api.spoonacular.com/recipes/complexSearch?query=pasta&maxFat=25&number=20&apiKey=e8bdd0a88cb74532a82c0427fb822da2&includeNutrition=true')
+                    .then(response => response.json())
+                    .then(data => {
+                        commit("GET_RECIPES", data.results);
+                        console.log(data.results)});
+                 
+                }
+              }
+    
+   
+      
   })
 
 new Vue({

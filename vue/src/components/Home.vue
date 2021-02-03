@@ -10,23 +10,22 @@
 </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default{
   data: () => ({
     username: '',
     password: '',
   }),
      mounted() {
-    this.recipes = this.$store.state.recipes;
+         this.$store.dispatch("fetchRecipes")
+
 
   },
-  methods: {
+  computed:mapState(["recipes"])
+  
+ 
 
-    getIngredients: function () {
-        
-      this.$store.commit("getIngredients");
-      this.recipes = this.$store.state.recipes.value
-    },
-  },
+
 }
 </script>
 
