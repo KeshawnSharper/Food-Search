@@ -104,4 +104,27 @@ class RecipesView(APIView):
 		cursor.execute("DELETE FROM saved_recipes WHERE id = ?;",(kwargs['id']) )
 		connection.commit()
 		return Response(request.data)
+class IngredientsView(APIView):
+	def get(self,request,*args,**kwargs):
+		connection = sqlite3.connect('/Users/lambda_school_loaner_182/Documents/Food-Search/db.sqlite3')
+		cursor = connection.cursor()
+		print(kwargs)
+		if kwargs and "user_id" in kwargs:
+			cursor.execute("SELECT * FROM saved_ingredients WHERE user_id=?", (kwargs["user_id"],))
+			results = cursor.fetchall()
+		else:
+			cursor.execute("SELECT * FROM saved_ingredients")
+			results = cursor.fetchall()
+		data = []
+		for row in results:
+			print(row[0])
+			data.append({
+				"id":row[3],
+				"name":row[1],
+				"image":row[2],
+				"user_id":row[0],
+			})
+		cursor.close()
+		return Response(data)
+
 		
