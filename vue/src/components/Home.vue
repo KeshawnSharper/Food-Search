@@ -2,8 +2,8 @@
 <div>
 <div class="wrap">
    <div class="search">
-      <input type="text" class="searchTerm" placeholder="What are you looking for?">
-      <button type="submit" class="searchButton">
+      <input type="text" class="searchTerm" placeholder="What are you looking for?"  v-model="recipe">
+      <button v-on:click="search" type="submit" class="searchButton">
         <i class="fa fa-search"></i>
      </button>
    </div>
@@ -13,7 +13,7 @@
       {{ recipe.title }}
     </li>
   </ol>
-  <button v-on:click="getIngredients"> </button>
+  <button v-on:click="search"> </button>
 </div>
 </template>
 <script>
@@ -22,13 +22,19 @@ export default{
   data: () => ({
     username: '',
     password: '',
+    recipe: '',
   }),
      mounted() {
          this.$store.dispatch("fetchRecipes")
 
 
   },
-  computed:mapState(["recipes"])
+  computed:mapState(["recipes"]),
+  methods: {
+    search: function () {
+    console.log(this.recipe)
+    }
+  }
   
  
 
