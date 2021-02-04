@@ -184,5 +184,18 @@ body{
 .pointer{
 cursor:pointer
 }
+@media only screen and (max-width: 600px) {
 
+  .grid-container {
+    margin-left:5rem;
+    grid-template-columns: auto ;
+
+  }
+}
+@media only screen and (min-width: 600px) and (max-width: 992px) {
+  .grid-container {
+    grid-template-columns: auto auto auto;
+
+  }
+}
 </style>
