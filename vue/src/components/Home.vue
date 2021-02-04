@@ -8,12 +8,27 @@
      </button>
    </div>
 </div>
-  <ol v-if="this.recipes">
-    <li v-for="recipe in this.recipes" :key="recipe.id">
-      {{ recipe.title }}
-    </li>
-  </ol>
-  <button v-on:click="search"> </button>
+<div class="grid-container" v-if="this.recipes">
+     <div v-for="recipe in this.recipes" :key="recipe.id" class="grid-item card">
+            <div class="card__image">
+               <img :src="recipe.image" alt="Salad" />
+            </div>
+            <div class="card__info">
+               <div class="car__info--title">
+                  <h3>{{ recipe.title }}</h3>
+                  <a class="pointer"> Learn More</a>
+               </div>
+               <div class="card__info--price">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+               </div>
+         </div>
+      
+    </div>
+  </div>
 </div>
 </template>
 <script>
@@ -90,4 +105,84 @@ body{
   margin-top:1.5%;
   transform: translate(-50%, -50%);
 }
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+.grid-item {
+  
+}
+.card {
+   width: 295px;
+   overflow: hidden;
+   border-radius: 25px;
+   border: 1px solid lavender;
+   margin: 10px;
+   box-shadow: 5px 5px 15px 5px rgba(230, 230, 250, 1);
+}
+
+.card__image {
+   position: relative;
+   height: 140px;
+}
+.card__image > img {
+   max-width: 100%;
+   border-bottom-right-radius: 30px;
+   transform: rotate(10deg) translate(-15px, -55px);
+   position: absolute;
+   height: 200px;
+   object-fit: cover;
+   object-position: center;
+}
+
+.card__info {
+   display: flex;
+   align-items: flex-end;
+   justify-content: space-between;
+   padding: 0px 30px 20px 30px;
+}
+.card__info h3 {
+   font-size: 18px;
+   font-weight: 700;
+}
+.card__info p {
+   font-size: 14px;
+   font-weight: 600;
+}
+.card__info--price {
+   text-align: right;
+   color: orangered;
+}
+.rect2 {
+   position: relative;
+   bottom: 315px;
+   right: 15px;
+   width: 325px;
+   height: 230px;
+   border: 1px solid lavender;
+   border-radius: 0 0px 80px 0;
+   transform: rotate(10deg);
+   object-fit: cover;
+}
+.checked {
+   color: #ffd700;
+}
+
+::-webkit-scrollbar {
+   width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+   background: #cccccc;
+   border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+   border-radius: 10px;
+}
+.pointer{
+cursor:pointer
+}
+
 </style>
