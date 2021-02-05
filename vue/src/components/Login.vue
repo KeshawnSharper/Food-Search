@@ -52,7 +52,8 @@
 </svg>
 </div>
   <form @submit.prevent="submit">
-
+			<p v-if="this.error_user" class="error">Invalid Credentials, Try again </p>
+			<p v-if="this.error_blank" class="error">Please fill out form</p>
 			<p class="formLabel">Username</p>
 		<div class="form-item">
 			<input v-model="username" name="email" id="email" class="form-style" autocomplete="off"/>
@@ -78,6 +79,8 @@ export default{
   data: () => ({
     username: '',
     password: '',
+	error_user: false,
+	error_blank: false,
   }),
 
   methods: {
@@ -92,15 +95,31 @@ export default{
  "password": this.password
 }),
 })
-.then(response => response.json())
-.then((data) => {
-  console.log('Success:', data);
-})
-.catch((error) => {
-  console.error('Error:', error);
-})
+.then(response => {
+	response.json()
+	console.log(response.status)
+	
+	if(response.status === 400){
+		this.error_blank = true
+		this.error_user = false
+		console.log('Error:', response.status)
+	}
+	else if(response.status === 401){
+		this.error_blank = false  
+		this.error_user = true
+		console.log('Error:1', response.status)
+	}
+	else{
+  console.log('Success:', response.json())
+  this.username = ''
+  this.password = ''
+  this.$router.push({ name: 'home' })
+}
+	}
+	)
+
     }
-  },
+  }
 }
 </script>
 
@@ -129,8 +148,7 @@ div.logo svg{
 	background: rgba(0,0,0,.2); 
 	width:100%; 
 	height:100%; 
-	position: absolute; 
-	top:0; 
+	margin-top:-100px;
 	left:0;
 	transition:all .3s ease;}
 .darken-bg{background: rgba(0,0,0,.5) !important; transition:all .3s ease;}
@@ -139,7 +157,7 @@ div#form{
 	width:360px;
 	height:320px;
 	height:auto;
-	background-color: #fff;
+	
 	margin:auto;
 	border-radius: 5px;
 	padding:20px;
@@ -188,11 +206,13 @@ input[type="submit"].login{
 	-webkit-background-clip: padding-box;
 	background-clip: padding-box;
 	background-color: #55b1df;
-	border:1px solid #55b1df;
 	border:none;
 	color: #fff;
 	font-weight: bold;
 }
 input[type="submit"].login:hover{background-color: #fff; border:1px solid #55b1df; color:#55b1df; cursor:pointer;}
 input[type="submit"].login:focus{outline: none;}
+.error{
+	color:red
+}
 </style>
