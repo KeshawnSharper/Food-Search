@@ -1,6 +1,7 @@
 <template>
   <body>
-<div id="formWrapper">
+<div class="loader" v-if="this.loading"></div>
+<div id="formWrapper" v-if="!this.loading">
 
 <div id="form">
 <div class="logo">
@@ -89,6 +90,7 @@ export default{
   }),
   methods: {
     submit: function () {
+		this.loading = true
       fetch('http://127.0.0.1:8000/auth/users/', {
   method: 'POST',
   headers: {
@@ -111,7 +113,6 @@ export default{
 		else{
   console.log('Success:', response.json())
  
-  this.loading = false
     fetch('http://127.0.0.1:8000/api/token/', {
   method: 'POST',
   headers: {
@@ -230,5 +231,20 @@ input[type="submit"].login:hover{background-color: #fff; border:1px solid #55b1d
 input[type="submit"].login:focus{outline: none;}
 .error{
 	color:red
+}
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  margin-left:550px;
+  margin-top:150px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 </style>
