@@ -52,7 +52,9 @@
 </svg>
 </div>
   <form @submit.prevent="submit">
+  <p v-if="this.error_user" class="error">Invalid Credentials or User Registered, Try again </p>
 <p class="formLabel">Email</p>
+		
 		<div class="form-item">
 			<input v-model="email" name="email" id="email" class="form-style" autocomplete="off"/>
 		</div>
@@ -81,6 +83,8 @@ export default{
   data: () => ({
     username: '',
     password: '',
+	error_user: false,
+	loading: false,
  email: '',
   }),
   methods: {
@@ -95,17 +99,38 @@ export default{
  "re_password": this.password,
  "password": this.password,
  "email": this.email,
+
+}),
+})
+.then(response => {
+	if(response.status === 400){
+		this.error_user = true
+		this.loading = false
+		console.log('Error:', response.status)
+	}
+		else{
+  console.log('Success:', response.json())
+ 
+  this.loading = false
+    fetch('http://127.0.0.1:8000/api/token/', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+ "username": this.username,
+ "password": this.password
 }),
 })
 .then(response => response.json())
-.then((data) => {
-  console.log('Success:', data);
-})
-.catch((error) => {
-  console.error('Error:', error);
-});
-    },
-  },
+.then(() => this.$router.push({ name: 'home' }))
+  
+}
+
+
+    })
+  }
+}
 }
 </script>
 
@@ -137,7 +162,10 @@ div.logo svg{
 	position: absolute; 
 	top:0; 
 	left:0;
-	transition:all .3s ease;}
+	transition:all .3s ease;
+	
+	margin-top:-150px;
+	}
 .darken-bg{background: rgba(0,0,0,.5) !important; transition:all .3s ease;}
 div#form{
 	position: absolute;
@@ -200,4 +228,7 @@ input[type="submit"].login{
 }
 input[type="submit"].login:hover{background-color: #fff; border:1px solid #55b1df; color:#55b1df; cursor:pointer;}
 input[type="submit"].login:focus{outline: none;}
+.error{
+	color:red
+}
 </style>
