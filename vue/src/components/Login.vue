@@ -1,6 +1,7 @@
 <template>
   <body>
-<div id="formWrapper">
+  <div class="loader" v-if="this.loading"></div>
+<div id="formWrapper" v-if="!this.loading">
 
 <div id="form">
 <div class="logo">
@@ -81,10 +82,12 @@ export default{
     password: '',
 	error_user: false,
 	error_blank: false,
+	loading: false,
   }),
 
   methods: {
     submit: function () {
+		this.loading = true
       fetch('http://127.0.0.1:8000/api/token/', {
   method: 'POST',
   headers: {
@@ -102,17 +105,20 @@ export default{
 	if(response.status === 400){
 		this.error_blank = true
 		this.error_user = false
+		this.loading = false
 		console.log('Error:', response.status)
 	}
 	else if(response.status === 401){
 		this.error_blank = false  
 		this.error_user = true
+		this.loading = false
 		console.log('Error:1', response.status)
 	}
 	else{
   console.log('Success:', response.json())
   this.username = ''
   this.password = ''
+  this.loading = false
   this.$router.push({ name: 'home' })
 }
 	}
@@ -214,5 +220,20 @@ input[type="submit"].login:hover{background-color: #fff; border:1px solid #55b1d
 input[type="submit"].login:focus{outline: none;}
 .error{
 	color:red
+}
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  margin-left:550px;
+  margin-top:150px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 </style>
