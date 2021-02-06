@@ -54,7 +54,7 @@
 </div>
   <form @submit.prevent="submit">
   <p v-if="this.error_user" class="error">Invalid Credentials or User Registered, Try again </p>
-<p class="formLabel">Email</p>
+<p class="formLabel">Emailhbfvgg</p>
 		
 		<div class="form-item">
 			<input v-model="email" name="email" id="email" class="form-style" autocomplete="off"/>
