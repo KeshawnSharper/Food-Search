@@ -153,24 +153,19 @@ div.logo svg{
 #formWrapper{
 	background: rgba(0,0,0,.2); 
 	width:100%; 
-	height:100%; 
-	margin-top:-100px;
-	left:0;
-	transition:all .3s ease;}
+	height:100%; 	
+	transition:all .3s ease;
+	margin-top:150px;
+	}
 .darken-bg{background: rgba(0,0,0,.5) !important; transition:all .3s ease;}
 div#form{
-	position: absolute;
 	width:360px;
 	height:320px;
 	height:auto;
-	
+	background-color: #fff;
 	margin:auto;
 	border-radius: 5px;
 	padding:20px;
-	left:50%;
-	top:50%;
-	margin-left:-180px;
-	margin-top:-200px;
 }
 div.form-item{position: relative; display: block; margin-bottom: 20px;}
  input{transition: all .2s ease;}
@@ -212,6 +207,7 @@ input[type="submit"].login{
 	-webkit-background-clip: padding-box;
 	background-clip: padding-box;
 	background-color: #55b1df;
+	border:1px solid #55b1df;
 	border:none;
 	color: #fff;
 	font-weight: bold;
