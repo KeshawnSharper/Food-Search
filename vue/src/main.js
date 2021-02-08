@@ -31,7 +31,8 @@ next()
       }
     }
     }
-  
+    ,
+    { path: "/recipe/:id", name: 'recipe' },
 ];
 
 // 3. Create the router instance and pass the `routes` option

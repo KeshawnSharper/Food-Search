@@ -15,8 +15,8 @@
             </div>
             <div class="card__info">
                <div class="car__info--title">
-                  <h3>{{ recipe.title }}</h3>
-                  <a class="pointer"> Learn More</a>
+                 <h3>{{ recipe.title }}</h3>
+                  <router-link :to="{ name: 'recipe', params: { id: recipe.id }}"> Learn More</router-link>
                </div>
                <div class="card__info--price">
                   <span class="fa fa-star checked"></span>
