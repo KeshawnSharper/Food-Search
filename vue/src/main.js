@@ -18,7 +18,7 @@ Vue.config.productionTip = false;
 // `Vue.extend()`, or just a component options object.
 // We'll talk about nested routes later.
 const routes = [
-
+    { path: '', redirect: '/login' },
     { path: "/login", component: Login, name: 'login'},
     { path: "/register", component: Register, name: 'register' },
     { path: "/home", component: Home, name: 'home',
