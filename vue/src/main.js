@@ -19,16 +19,19 @@ Vue.config.productionTip = false;
 // We'll talk about nested routes later.
 const routes = [
 
-    { path: "/login", component: Login, name: 'login'
-  
-  },
+    { path: "/login", component: Login, name: 'login'},
     { path: "/register", component: Register, name: 'register' },
     { path: "/home", component: Home, name: 'home',
     beforeEnter: (to, from, next) => {
-      if (to.name !== 'home' && localStorage.getItem('token') ) next({ name:'home'  })
-      else next({name:'login'})
+      if(localStorage.getItem("token")){
+next()
+      }
+      else{
+        next(false)
+      }
     }
-  },
+    }
+  
 ];
 
 // 3. Create the router instance and pass the `routes` option

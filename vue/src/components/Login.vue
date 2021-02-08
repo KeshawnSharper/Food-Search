@@ -99,7 +99,6 @@ export default{
 }),
 })
 .then(response => {
-	response.json()
 	console.log(response.status)
 	
 	if(response.status === 400){
@@ -115,14 +114,20 @@ export default{
 		console.log('Error:1', response.status)
 	}
 	else{
-  console.log('Success:', response.json())
+  
   this.username = ''
   this.password = ''
-  this.loading = false
-  this.$router.push({ name: 'home' })
+  response.json().then(data => {
+	localStorage.setItem('token', data.access)
+	this.$router.push('/home').catch(error => {
+   console.info(error.message)
+})
+	
+  })
 }
 	}
 	)
+	
 
     }
   }
