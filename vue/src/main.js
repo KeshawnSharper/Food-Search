@@ -3,6 +3,7 @@ import App from "./App.vue";
 import VueRouter from "vue-router";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Recipe from "./components/Recipe";
 import Home from "./components/Home";
 import Vuex from 'vuex'
 
@@ -32,7 +33,7 @@ next()
     }
     }
     ,
-    { path: "/recipe/:id", name: 'recipe' },
+    { path: "/recipe/:id", name: 'recipe', component: Recipe },
 ];
 
 // 3. Create the router instance and pass the `routes` option
@@ -50,6 +51,9 @@ const store = new Vuex.Store({
         
         GET_RECIPES(state, recipes) {
           state.recipes = recipes
+        },
+        GET_RECIPE(state, recipe) {
+          state.recipe = recipe
         }
       },
          
@@ -62,7 +66,15 @@ const store = new Vuex.Store({
                         commit("GET_RECIPES", data.results);
                         console.log(data.results)});
                  
-                }
+                },
+                fetchRecipe({ commit }, id) {
+                  fetch(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&number=20&apiKey=e8bdd0a88cb74532a82c0427fb822da2&includeNutrition=true`)
+                  .then(response => response.json())
+                  .then(data => {
+                      commit("GET_RECIPE", data);
+                      });
+               
+              }
               }
     
    
