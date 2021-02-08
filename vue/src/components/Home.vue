@@ -47,7 +47,7 @@ export default{
   computed:mapState(["recipes"]),
   methods: {
     search: function () {
-this.$store.dispatch("fetchRecipes")    }
+this.$store.dispatch("fetchRecipes",this.recipe)    }
   }
   
  
