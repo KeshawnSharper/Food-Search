@@ -54,8 +54,8 @@ const store = new Vuex.Store({
          
            
             actions: {
-                fetchRecipes({ commit }) {
-                    fetch('https://api.spoonacular.com/recipes/complexSearch?query=pasta&maxFat=25&number=20&apiKey=e8bdd0a88cb74532a82c0427fb822da2&includeNutrition=true')
+                fetchRecipes({ commit }, recipe) {
+                    fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${recipe}&maxFat=25&number=20&apiKey=e8bdd0a88cb74532a82c0427fb822da2&includeNutrition=true`)
                     .then(response => response.json())
                     .then(data => {
                         commit("GET_RECIPES", data.results);

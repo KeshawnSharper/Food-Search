@@ -40,15 +40,14 @@ export default{
     recipe: '',
   }),
      mounted() {
-         this.$store.dispatch("fetchRecipes")
+         this.$store.dispatch("fetchRecipes","Tuna")
 
 
   },
   computed:mapState(["recipes"]),
   methods: {
     search: function () {
-    console.log(this.recipe)
-    }
+this.$store.dispatch("fetchRecipes")    }
   }
   
  
