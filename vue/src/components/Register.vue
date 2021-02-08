@@ -124,7 +124,11 @@ export default{
 }),
 })
 .then(response => response.json())
-.then(() => this.$router.push({ name: 'home' }))
+.then((data) => {
+	console.log(data)
+		localStorage.setItem('token', data.access)
+
+	this.$router.push({ name: 'home' })})
   
 }
 
