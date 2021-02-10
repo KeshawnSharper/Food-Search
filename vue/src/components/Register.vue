@@ -127,7 +127,20 @@ export default{
 .then((data) => {
 	console.log(data)
 		localStorage.setItem('token', data.access)
-
+	localStorage.setItem('token', data.access)
+	fetch(`http://127.0.0.1:8000/${this.username}`, {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+  }
+})
+.then(response => {
+	response.json().then(data => {
+		console.log(data)
+		localStorage.setItem('username', this.username)
+		localStorage.setItem('id', data[0].id)
+	})
+})
 	this.$router.push({ name: 'home' })})
   
 }

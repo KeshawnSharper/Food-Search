@@ -47,6 +47,7 @@ const store = new Vuex.Store({
       recipes: [],
       ingredients: [],
       recipe: {},
+      user_recipes: [],
     },
     mutations: {
         
@@ -55,6 +56,9 @@ const store = new Vuex.Store({
         },
         GET_RECIPE(state, recipe) {
           state.recipe = recipe
+        },
+        GET_USER_RECIPES(state, user_recipes) {
+          state.user_recipes = user_recipes
         }
       },
          
@@ -65,7 +69,7 @@ const store = new Vuex.Store({
                     .then(response => response.json())
                     .then(data => {
                         commit("GET_RECIPES", data.results);
-                        console.log(data.results)});
+                        });
                  
                 },
                 fetchRecipe({ commit }, id) {
@@ -75,7 +79,16 @@ const store = new Vuex.Store({
                       commit("GET_RECIPE", data);
                       });
                
-              }
+              },
+              fetchUserRecipes({ commit }) {
+                fetch(`http://127.0.0.1:8000/saved_recipes/${localStorage.getItem('id')}`)
+                .then(response => response.json())
+                .then(data => {
+                  
+                    commit("GET_USER_RECIPES", data);
+                    });
+             
+            }
               }
     
    

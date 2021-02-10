@@ -41,12 +41,14 @@ export default{
   }),
      mounted() {
          this.$store.dispatch("fetchRecipes","Tuna")
-
+         this.$store.dispatch("fetchUserRecipes")
 
   },
-  computed:mapState(["recipes"]),
+  computed:mapState(["recipes","user_recipes"]),
   methods: {
     search: function () {
+       console.log(this.user_recipes)
+       console.log(this.recipes)
 this.$store.dispatch("fetchRecipes",this.recipe)    }
   }
   
