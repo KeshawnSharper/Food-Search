@@ -46,6 +46,7 @@ const store = new Vuex.Store({
     state: {
       recipes: [],
       ingredients: [],
+      recipe: {},
     },
     mutations: {
         

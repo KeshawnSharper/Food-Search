@@ -1,35 +1,39 @@
 <template>
-<div>
-<div class="wrap">
-   <div class="search">
-      <input type="text" class="searchTerm" placeholder="What are you looking for?"  v-model="recipe">
-      <button v-on:click="search" type="submit" class="searchButton">
-        <i class="fa fa-search"></i>
-     </button>
-   </div>
-</div>
-<div class="grid-container" v-if="this.recipes">
-     <div v-for="recipe in this.recipes" :key="recipe.id" class="grid-item card">
-            <div class="card__image">
-               <img :src="recipe.image" alt="Salad" />
-            </div>
-            <div class="card__info">
-               <div class="car__info--title">
-                 <h3>{{ recipe.title }}</h3>
-                  <router-link :to="{ name: 'recipe', params: { id: recipe.id }}"> Learn More</router-link>
-               </div>
-               <div class="card__info--price">
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-               </div>
-         </div>
-      
+
+<div class="container">
+
+  <div class="card-profile">
+    <div class="card-profile_visual"></div>
+
+    <div class="card-profile_user-infos">
+      <span v-if="this.recipe" class="infos_name">{{this.recipe.title}}</span>
+      <span class="infos_nick">@EmWatson</span>
+
+      <a href="#"></a>
     </div>
+
+    <div class="card-profile_user-stats">
+      <div class="stats-holder">
+        <div class="user-stats">
+          <strong>Tweets</strong>
+          <span>1,337</span>
+        </div>
+        <div class="user-stats">
+          <strong>Following</strong>
+          <span>561</span>
+        </div>
+        <div class="user-stats">
+          <strong>Followers</strong>
+          <span>718</span>
+        </div>
+      </div>
+    </div>
+
   </div>
+
 </div>
+
+
 </template>
 <script>
 import { mapState } from 'vuex'
@@ -37,14 +41,16 @@ export default{
   data: () => ({
     username: '',
     password: '',
+    load: false
   }),
+  computed:mapState(["recipe"]),
      mounted() {
-        console.log(this.$route.params.id)
         this.$store.dispatch("fetchRecipe",this.$route.params.id)
-        console.log(this.recipe)
+       console.log(this.recipe)
 
   },
-  computed:mapState(["recipe"]),
+  
+  
   methods: {
     
   }
@@ -57,143 +63,183 @@ export default{
 
 
 <style>
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
-body{
-  background: #f2f2f2;
-  font-family: 'Open Sans', sans-serif;
+@font-face {
+  font-family: "ProximaNova-Regular";
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/64/ProximaNova-Regular.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/64/ProximaNova-Regular.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/64/ProximaNova-Regular.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/64/ProximaNova-Regular.ttf") format("truetype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/64/ProximaNova-Regular.svg#rocketdesign-font") format("svg");
+  font-weight: normal;
+  font-style: normal;
 }
-
-.search {
+:root {
+  font-size: 16px;
+}
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html, body {
   width: 100%;
- display: flex;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  float: left;
 }
-
-.searchTerm {
+body {
+  background: #f0efed;
+  background-image: linear-gradient(to bottom, #e5e4e5, #c2c1c2);
+  font-family: 'ProximaNova-Regular', Helvetica neue, sans-serif;
+}
+.container {
+  max-width: 350px;
   width: 100%;
-  border: 3px solid #00B4CC;
-  border-right: none;
-  padding: 5px;
-  height: 20px;
-  border-radius: 5px 0 0 5px;
-  outline: none;
-  color: #9DBFAF;
+  height: 100%;
+  position: relative;
+  margin: auto;
 }
-
-.searchTerm:focus{
-  color: #00B4CC;
-}
-
-.searchButton {
-  width: 40px;
-  height: 36px;
-  border: 1px solid #00B4CC;
-  background: #00B4CC;
-  text-align: center;
-  color: #fff;
-  border-radius: 0 5px 5px 0;
-  cursor: pointer;
-  font-size: 20px;
-}
-
-/*Resize the wrap to see the search bar change!*/
-.wrap{
-  width: 30%;
-  margin-left:50%;
-  margin-top:1.5%;
+.card-profile {
+  float: left;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
+  width: 100%;
+  height: 530px;
+  background: #fff;
+  border-radius: 10px;
+  z-index: 1;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
-.grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
+.card-profile:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  bottom: 0;
+  box-shadow: 0 36px 64px -34px rgba(0, 0, 0, 1), 0 16px 14px -14px rgba(0, 0, 0, 0.6), 0 22px 18px -18px rgba(0, 0, 0, 0.4), 0 22px 38px -18px rgba(0, 0, 0, 1);
+  transform: scaleX(0.7) scaleY(1.3) translateY(-15%);
+  z-index: -1;
+  opacity: 0.25;
 }
-.grid-item {
-  
+.card-profile_visual {
+  height: 68%;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(to bottom, #3b3c3f, #263d85, #172551);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
-.card {
-   width: 295px;
-   overflow: hidden;
-   border-radius: 25px;
-   border: 1px solid lavender;
-   margin: 10px;
-   box-shadow: 5px 5px 15px 5px rgba(230, 230, 250, 1);
+.card-profile_visual:before, .card-profile_visual:after {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 0;
+  background: url(https://s-media-cache-ak0.pinimg.com/236x/c5/86/e6/c586e6afd87ee357bbab52df241480ac.jpg) no-repeat center center/cover;
+  opacity: 0.5;
+  mix-blend-mode: lighten;
 }
-
-.card__image {
-   position: relative;
-   height: 140px;
+.card-profile_visual:before {
+  filter: grayscale(100%);
 }
-.card__image > img {
-   max-width: 100%;
-   border-bottom-right-radius: 30px;
-   transform: rotate(10deg) translate(-15px, -55px);
-   position: absolute;
-   height: 200px;
-   object-fit: cover;
-   object-position: center;
+.card-profile_visual:after {
+  z-index: 2;
+  mix-blend-mode: lighten;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAElBMVEUAAABUUlRERkRMSkxMTkxEQkT490VOAAAAAXRSTlMAQObYZgAAAoxJREFUOI0dlImR5DAIRRXDbgaAEwCcAOAEZE/+qczTdFf1JQH/otd4SJWWf5+m7GjR28Z0TZW38pLjj1aWJl9eWaGfaCq/y4y012hPhqySnnbXe7Q6ulK6nZeV5bpjhyo9xLj7apvFSk3zSXEmtEZmNngYbhWhkmKne7XalnDrYcZMNwMlwuQuj/ezS2dJmpjEFwLe7T7zWE0zo22icr4dNZnfOLUp72rNcA8vcx3Y8r3MZpYOPSAC6mfSGRQBD1sZyFPd9b0mohN70CQTSa6+Ik15RifUaCjWq6zp2/9T697e5VsRKGUl4I4WnWpOxVAI7FoMEsrp2gLUCgH9J84B8o1Sgrb+0auEdrpocIQzU94mHBmMuliIlFemt0s8w3mUe0ssLnaecjllDunTW20d33ZxkUOoSIJbrWxZiHjdhV190e5AzjwONn4ASvTCC5CcKfywuFMBe1QpYjG0x38nJYAcR26k54o8YiXqeC7Hcth54lfwSPlHOBfOE9F0rGguJsr1V+GroafdEC+3qK2HX8Qsf0lWEwX0J29Pkh2lmFB33wKZBB8Rlhpj5AVBd6mTMYBC4cZzKNb6SygJJ3dnNIqkHnuwVgvaoCFcomyI6c+QEvxq0tKEiQCe9QoS18kaKFMl7wqEqJ2A6XkQMejE1dEcu7G/g1JRmHMOkjGIvqXHErayVgdJIIJsGBw1LzaijlFdExOIInKEOZ/oReBCsDlepSPBvRCAj/n10gfjFIml8rVSUDz2ISKeDxmFuviLVSzJOCqxtXToeJpNJr9Pnij+LQ4A/cgXDyuATWyPkrJ1En1cvPk3sB8VfMLIvwO5CKu+uC1OFNLvvoe0h97ieKNjsUkc/zQ6V/0CAoboTZwdKY4AAAAASUVORK5CYII=);
+  opacity: 1;
 }
-
-.card__info {
-   display: flex;
-   align-items: flex-end;
-   justify-content: space-between;
-   padding: 0px 30px 20px 30px;
+.card-profile_user-infos {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: calc(68% - 100px);
+  color: #fff;
+  text-align: center;
 }
-.card__info h3 {
-   font-size: 18px;
-   font-weight: 700;
+.card-profile_user-infos a {
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: #f96b4c;
+  background-image: linear-gradient(#f96b4c, #f23182);
+  display: block;
+  clear: both;
+  margin: auto;
+  border-radius: 100%;
+  top: calc(500% + 66px);
+  box-shadow: 0 2px 0 #d42d78, 0 3px 10px rgba(243, 49, 128, 0.15), 0 0px 10px rgba(243, 49, 128, 0.15), 0 0px 4px rgba(0, 0, 0, 0.35), 0 5px 20px rgba(243, 49, 128, 0.25), 0 15px 40px rgba(243, 49, 128, 0.75), inset 0 0 15px rgba(255, 255, 255, 0.05);
+  overflow: hidden;
 }
-.card__info p {
-   font-size: 14px;
-   font-weight: 600;
+.card-profile_user-infos a:after {
+  content: '';
+  font-style: normal;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/64/icon-add-f.svg");
+  background-repeat: no-repeat;
+  background-size: 30%;
+  background-position: center center;
+  left: 0;
+  top: 0;
 }
-.card__info--price {
-   text-align: right;
-   color: orangered;
+.card-profile_user-infos .infos_name, .card-profile_user-infos .infos_nick {
+  display: block;
+  clear: both;
+  padding: 0.5em 0;
+  padding-top: 0;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  top: 8px;
+  font-weight: 800;
 }
-.rect2 {
-   position: relative;
-   bottom: 315px;
-   right: 15px;
-   width: 325px;
-   height: 230px;
-   border: 1px solid lavender;
-   border-radius: 0 0px 80px 0;
-   transform: rotate(10deg);
-   object-fit: cover;
+.card-profile_user-infos .infos_nick {
+  top: 32px;
+  font-size: 14px;
+  font-weight: 300;
 }
-.checked {
-   color: #ffd700;
+.card-profile_user-stats {
+  background: #fff;
+  float: left;
+  width: 100%;
+  height: calc(100% - 68% + 2px);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
-
-::-webkit-scrollbar {
-   width: 8px;
+.card-profile_user-stats .stats-holder {
+  position: absolute;
+  width: 100%;
+  top: calc(70% + 4em);
+  display: flex;
 }
-
-::-webkit-scrollbar-thumb {
-   background: #cccccc;
-   border-radius: 10px;
+.card-profile_user-stats .user-stats {
+  flex: 1;
+  text-align: center;
 }
-
-::-webkit-scrollbar-track {
-   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-   border-radius: 10px;
+.card-profile_user-stats .user-stats strong {
+  display: block;
+  float: left;
+  clear: both;
+  width: 100%;
+  color: #b3b1b2;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
 }
-.pointer{
-cursor:pointer
-}
-@media only screen and (max-width: 600px) {
-
-  .grid-container {
-    margin-left:5rem;
-    grid-template-columns: auto ;
-
-  }
-}
-@media only screen and (min-width: 600px) and (max-width: 992px) {
-  .grid-container {
-    grid-template-columns: auto auto auto;
-
-  }
+.card-profile_user-stats .user-stats span {
+  font-size: 26px;
+  color: #5e5e5e;
+  padding: 0.18em 0;
+  display: inline-block;
 }
 </style>
