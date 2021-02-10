@@ -8,8 +8,9 @@
     <div class="card-profile_user-infos">
       <span v-if="this.recipe" class="infos_name">{{this.recipe.title}}</span>
       
-
-      <a href="#"></a>
+    <div v-if="this.recipe">
+      <a v-if="this.recipe.id && this.user_recipes_dict[this.recipe.id] != true" href="#"></a>
+      </div>
     </div>
 
     <div class="card-profile_user-stats">
@@ -45,10 +46,11 @@ export default{
             backgroundImage:`${this.recipe.image}`
             }
   }),
-  computed:mapState(["recipe"]),
+  computed:mapState(["recipe","user_recipes_dict"]),
      mounted() {
         this.$store.dispatch("fetchRecipe",this.$route.params.id)
        console.log(this.recipe)
+       console.log(this.user_recipes_dict)
 
   },
   

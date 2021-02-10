@@ -44,11 +44,12 @@ export default{
          this.$store.dispatch("fetchUserRecipes")
 
   },
-  computed:mapState(["recipes","user_recipes"]),
+  computed:mapState(["recipes","user_recipes","user_recipes_dict"]),
   methods: {
     search: function () {
        console.log(this.user_recipes)
        console.log(this.recipes)
+       console.log(this.user_recipes_dict)
 this.$store.dispatch("fetchRecipes",this.recipe)    }
   }
   

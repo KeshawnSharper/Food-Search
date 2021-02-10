@@ -76,7 +76,13 @@ class RecipesView(APIView):
 		data = []
 		for row in results:
 			print(row[0])
-			data.append(row)
+			data.append({
+				"image":row[0],
+				"name":row[1],
+				"user_id":row[2],
+				"id":row[3],
+				"recipe_id":row[4],
+			})
 		cursor.close()
 		return Response(data)
 	def post(self,request,*args,**kwargs):

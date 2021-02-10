@@ -48,6 +48,7 @@ const store = new Vuex.Store({
       ingredients: [],
       recipe: {},
       user_recipes: [],
+      user_recipes_dict: {},
     },
     mutations: {
         
@@ -58,7 +59,12 @@ const store = new Vuex.Store({
           state.recipe = recipe
         },
         GET_USER_RECIPES(state, user_recipes) {
+
           state.user_recipes = user_recipes
+          user_recipes.map(recipe => (
+            state.user_recipes_dict[recipe.recipe_id] = true
+          ))
+
         }
       },
          
