@@ -73,6 +73,7 @@ const store = new Vuex.Store({
                   .then(response => response.json())
                   .then(data => {
                       commit("GET_RECIPE", data);
+                      console.log(data)
                       });
                
               }
