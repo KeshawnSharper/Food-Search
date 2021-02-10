@@ -114,11 +114,22 @@ export default{
 		console.log('Error:1', response.status)
 	}
 	else{
-  
-  this.username = ''
-  this.password = ''
+
   response.json().then(data => {
 	localStorage.setItem('token', data.access)
+	fetch(`http://127.0.0.1:8000/${this.username}`, {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+  }
+})
+.then(response => {
+	response.json().then(data => {
+		console.log(data)
+		localStorage.setItem('username', this.username)
+		localStorage.setItem('id', data[0].id)
+	})
+})
 	this.$router.push('/home').catch(error => {
    console.info(error.message)
 })

@@ -15,8 +15,8 @@ class TestView(APIView):
 		connection = sqlite3.connect('/Users/lambda_school_loaner_182/Documents/Food-Search/db.sqlite3')
 		cursor = connection.cursor()
 		# cursor.execute("SELECT * FROM users WHERE id=?", (request.data['id'],))
-		if request.data and "email" in request.data:
-			cursor.execute("SELECT * FROM auth_user WHERE email=?", (request.data["email"],))
+		if kwargs and "username" in kwargs:
+			cursor.execute("SELECT * FROM auth_user WHERE username=?", (kwargs["username"],))
 			results = cursor.fetchall()
 		else:
 			cursor.execute("SELECT * FROM auth_user")
