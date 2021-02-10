@@ -3,7 +3,7 @@
 <div class="container">
 
   <div class="card-profile">
-    <div class="card-profile_visual"></div>
+    <div class="card-profile_visual" :style="{background:`url(${this.recipe.image}) no-repeat center center/cover`}"></div>
 
     <div class="card-profile_user-infos">
       <span v-if="this.recipe" class="infos_name">{{this.recipe.title}}</span>
@@ -41,7 +41,9 @@ export default{
   data: () => ({
     username: '',
     password: '',
-    load: false
+    myStyle:{
+            backgroundImage:`${this.recipe.image}`
+            }
   }),
   computed:mapState(["recipe"]),
      mounted() {
@@ -126,7 +128,6 @@ body {
   height: 68%;
   overflow: hidden;
   position: relative;
-  background: linear-gradient(to bottom, #3b3c3f, #263d85, #172551);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -137,7 +138,6 @@ body {
   height: 100%;
   position: absolute;
   z-index: 0;
-  background: url(https://s-media-cache-ak0.pinimg.com/236x/c5/86/e6/c586e6afd87ee357bbab52df241480ac.jpg) no-repeat center center/cover;
   opacity: 0.5;
   mix-blend-mode: lighten;
 }
