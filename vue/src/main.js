@@ -34,6 +34,16 @@ next()
     }
     ,
     { path: "/recipe/:id", name: 'recipe', component: Recipe },
+    { path: "/saved_recipes/:id", component: Home, name: 'Saved Recipes',
+    beforeEnter: (to, from, next) => {
+      if(localStorage.getItem("token")){
+next()
+      }
+      else{
+        next(false)
+      }
+    }
+    }
 ];
 
 // 3. Create the router instance and pass the `routes` option

@@ -6,7 +6,7 @@
       <button v-on:click="search" type="submit" class="searchButton">
         <i class="fa fa-search"></i>
      </button>
-     <p class="saved_recipes">cfvbfdg</p>
+     <router-link :to="{ name: 'Saved Recipes',params: { id: id }}"><p class="saved_recipes">Saved Recipes</p></router-link>
    </div>
 </div>
 <div class="grid-container" v-if="this.recipes">
@@ -39,13 +39,14 @@ export default{
     username: '',
     password: '',
     recipe: '',
+    id: localStorage.getItem('id')
   }),
      mounted() {
          this.$store.dispatch("fetchRecipes","Tuna")
          this.$store.dispatch("fetchUserRecipes")
 
   },
-  computed:mapState(["recipes","user_recipes","user_recipes_dict"]),
+  computed:mapState(["recipes","user_recipes","user_recipes_dict","user_id"]),
   methods: {
     search: function () {
        console.log(this.user_recipes)
@@ -193,7 +194,7 @@ cursor:pointer
    
 }
 .saved_recipes{
-margin-left:5rem;
+margin-left:2rem;
 }
 @media only screen and (max-width: 600px) {
 
