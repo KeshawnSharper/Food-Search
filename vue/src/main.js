@@ -68,6 +68,10 @@ const store = new Vuex.Store({
         GET_RECIPE(state, recipe) {
           state.recipe = recipe
         },
+        ADD_RECIPE(state, recipe) {
+          state.recipes.push(recipe)
+          state.user_recipes_dict[recipe.id] = true
+        },
         GET_USER_RECIPES(state, user_recipes) {
 
           state.user_recipes = user_recipes
@@ -104,7 +108,27 @@ const store = new Vuex.Store({
                     commit("GET_USER_RECIPES", data);
                     });
              
-            }
+            },
+            addRecipe({ commit }, recipe) {
+              fetch(`http://127.0.0.1:8000/saved_recipes/post`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+               "image": recipe.image,
+               "name": recipe.title,
+               "user_id":Number(localStorage.getItem('id')),
+               "recipe_id":recipe.id
+              }),
+              })
+              .then(response => response.json())
+              .then(data => {
+                
+                  commit("ADD_RECIPE", data);
+                  });
+           
+          }
               }
     
    

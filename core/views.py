@@ -86,9 +86,9 @@ class RecipesView(APIView):
 		cursor.close()
 		return Response(data)
 	def post(self,request,*args,**kwargs):
-		connection = sqlite3.connect('/Users/lambda_school_loaner_182/Documents/Food-Search/db.sqlite3')
+		connection = sqlite3.connect('/Users/lambda_school_loaner_182/Documents/Food-Search/db.sqlite3', timeout=10)
 		cursor = connection.cursor()
-		cursor.execute('INSERT INTO saved_recipes (image,name,user_id) VALUES (?,?,?) ;',(request.data["image"],request.data["name"],request.data["user_id"]))
+		cursor.execute('INSERT INTO saved_recipes (image,name,user_id,recipe_id) VALUES (?,?,?,?) ;',(request.data["image"],request.data["name"],request.data["user_id"],request.data["recipe_id"]))
 		print(request.data)
 		connection.commit()
 		# serializer =PostSerializer(data = request.data )

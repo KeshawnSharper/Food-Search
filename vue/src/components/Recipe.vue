@@ -9,7 +9,7 @@
       <span v-if="this.recipe" class="infos_name">{{this.recipe.title}}</span>
       
     <div v-if="this.recipe">
-      <a v-if="this.recipe.id && this.user_recipes_dict[this.recipe.id] != true" href="#"></a>
+      <div v-if="this.recipe.id && this.user_recipes_dict[this.recipe.id] != true" href="#" v-on:click="addRecipe"></div>
       </div>
     </div>
 
@@ -56,7 +56,10 @@ export default{
   
   
   methods: {
-    
+    addRecipe(){
+        this.$store.dispatch("addRecipe",this.recipe)
+        mapState(["recipe","user_recipes_dict"])
+    }
   }
   
  
