@@ -2,10 +2,11 @@
 <div>
 <div class="wrap">
    <div class="search">
-      <input type="text" class="searchTerm" placeholder="What are you looking for?"  v-model="recipe">
+      <input type="text" class="searchTerm" id="search" placeholder="What are you looking for?"  v-model="recipe">
       <button v-on:click="search" type="submit" class="searchButton">
         <i class="fa fa-search"></i>
      </button>
+     <p class="saved_recipes">cfvbfdg</p>
    </div>
 </div>
 <div class="grid-container" v-if="this.recipes">
@@ -71,6 +72,7 @@ body{
 .search {
   width: 100%;
  display: flex;
+ margin-top:2rem;
 }
 
 .searchTerm {
@@ -186,6 +188,13 @@ body{
 .pointer{
 cursor:pointer
 }
+#search{
+   height:2.3rem;
+   
+}
+.saved_recipes{
+margin-left:5rem;
+}
 @media only screen and (max-width: 600px) {
 
   .grid-container {
@@ -193,6 +202,9 @@ cursor:pointer
     grid-template-columns: auto ;
 
   }
+  #search{
+   width:15rem;
+}
 }
 @media only screen and (min-width: 600px) and (max-width: 992px) {
   .grid-container {
