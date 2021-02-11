@@ -33,8 +33,5 @@ urlpatterns = [
     path('saved_recipes/post', RecipesView.as_view(),name='recipes'),
     path('saved_recipes/<str:user_id>', RecipesView.as_view(),name='recipes'),
     path('saved_recipes/put/<str:id>', RecipesView.as_view(),name='recipes'),
-    path('saved_recipes/del/<str:id>', RecipesView.as_view(),name='recipes'),
-    path('saved_ingredients', IngredientsView.as_view(),name='ingredients'),
-    path('saved_ingredients/<str:user_id>', IngredientsView.as_view(),name='ingredients'),
-    path('saved_ingredients/del/<str:id>', IngredientsView.as_view(),name='ingredients'),
+    path('saved_recipes/del/<str:id>', RecipesView.as_view(),name='recipes')
 ]
