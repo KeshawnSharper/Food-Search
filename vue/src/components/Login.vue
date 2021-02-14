@@ -69,7 +69,7 @@
 		<router-link :to="{ name: 'register'}"><p class="pull-left"><a href="#"><small>Register</small></a></p></router-link>
 		<div class="clear-fix"></div>
 		</div>
-     <button>submit</button>
+     <button>Submit</button>
   </form>
 </div>
 </div>
