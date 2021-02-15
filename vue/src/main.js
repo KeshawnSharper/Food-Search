@@ -21,6 +21,7 @@ Vue.config.productionTip = false;
 // We'll talk about nested routes later.
 const routes = [
     { path: '', redirect: '/login' },
+    { path: '/', redirect: '/login' },
     { path: "/login", component: Login, name: 'login'},
     { path: "/register", component: Register, name: 'register' },
     { path: "/home", component: Home, name: 'home',
@@ -34,7 +35,15 @@ next()
     }
     }
     ,
-    { path: "/recipe/:id", name: 'recipe', component: Recipe },
+    { path: "/recipe/:id", name: 'recipe', component: Recipe,
+    beforeEnter: (to, from, next) => {
+      if(localStorage.getItem("token")){
+next()
+      }
+      else{
+        next(false)
+      }
+    } },
     { path: "/saved_recipes/:id", component: SavedRecipes, name: 'Saved Recipes',
     beforeEnter: (to, from, next) => {
       if(localStorage.getItem("token")){
