@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Recipe from "./components/Recipe";
 import Home from "./components/Home";
+import SavedRecipes from "./components/SavedRecipes";
 import Vuex from 'vuex'
 
 
@@ -34,7 +35,7 @@ next()
     }
     ,
     { path: "/recipe/:id", name: 'recipe', component: Recipe },
-    { path: "/saved_recipes/:id", component: Home, name: 'Saved Recipes',
+    { path: "/saved_recipes/:id", component: SavedRecipes, name: 'Saved Recipes',
     beforeEnter: (to, from, next) => {
       if(localStorage.getItem("token")){
 next()
