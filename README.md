@@ -21,5 +21,21 @@ VueJS/JavaScript/Html/CSS/VueEX/Python/Django
 # Bugs:
 No bugs 
 # How to use it:
-First, clone the repo into your terminal and forward to the House_of_Houses directory. Lastly,install yarn and run yarn start. 
+first:
+1.git clone https://github.com/KeshawnSharper/Food-Search.git
+2.cd Food-Search
+3.Create Two terminals the first terminal one for the front end and one for the backend. 
+Front end:
+4a. cd vue
+5a. npm install
+6a. npm run serve
+Back end:
+4b. pip install virtualenv
+5b. virtualenv env
+6b. source env/bin/activate
+7b. pip install django django-cors-headers djangorestframework django-rest-auth django-allauth djoser
+8b. cd ../
+9b. python manage.py runserver
+
+
 
