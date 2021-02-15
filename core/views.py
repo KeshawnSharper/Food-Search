@@ -39,29 +39,6 @@ class TestView(APIView):
 		# 	if int((a)['id']) == int(request.data['id']):
 		# 		data.append(a)
 		return Response(data)
-
-		# if 'username' in request.data:
-		# 	cursor.execute("SELECT * FROM auth_user WHERE username=?", (request.data['username'],))
-		# else:
-		# cursor.execute("SELECT * FROM auth_user")
-		# results = cursor.fetchall()
-		# print(results)
-		# data = []
-		# # if request.data['id']
-		# for row in results:
-		# 	object1 = {}
-		# 	col_name_list = [tuple[0] for tuple in cursor.description]
-		# 	for x in range(0,len(col_name_list) ):
-		# 		object1[col_name_list[x]] = row[x]
-		# 	data.append(object1)
-		# cursor.close()
-		# for key in request.data:
-		# 		print(key)
-
-		# # for a in serializer.data:
-		# 	if int((a)['id']) == int(request.data['id']):
-		# 		data.append(a)
-		# return Response(data)
 class RecipesView(APIView):
 	def get(self,request,*args,**kwargs):
 		connection = sqlite3.connect('/Users/lambda_school_loaner_182/Documents/Food-Search/db.sqlite3')

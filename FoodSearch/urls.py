@@ -19,7 +19,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-from core.views import TestView,RecipesView,IngredientsView
+from core.views import TestView,RecipesView
 
 urlpatterns = [
     path('admin/', admin.site.urls),

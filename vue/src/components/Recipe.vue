@@ -9,7 +9,7 @@
       <span v-if="this.recipe" class="infos_name">{{this.recipe.title}}</span>
       
     <div v-if="this.recipe">
-      <div v-if="this.recipe.id && this.user_recipes_dict[this.recipe.id] != true" href="#" v-on:click="addRecipe"></div>
+      <div class="recipe_check" v-if="this.user_recipes_dict[this.$route.params.id] != true" href="#" v-on:click="addRecipe"></div>
       </div>
     </div>
 
@@ -49,8 +49,7 @@ export default{
   computed:mapState(["recipe","user_recipes_dict"]),
      mounted() {
         this.$store.dispatch("fetchRecipe",this.$route.params.id)
-       console.log(this.recipe)
-       console.log(this.user_recipes_dict)
+       console.log(`hey`,this.user_recipes_dict)
 
   },
   
@@ -165,7 +164,7 @@ body {
   color: #fff;
   text-align: center;
 }
-.card-profile_user-infos a {
+.card-profile_user-infos .recipe_check {
   width: 64px;
   height: 64px;
   position: absolute;
@@ -182,7 +181,7 @@ body {
   box-shadow: 0 2px 0 #d42d78, 0 3px 10px rgba(243, 49, 128, 0.15), 0 0px 10px rgba(243, 49, 128, 0.15), 0 0px 4px rgba(0, 0, 0, 0.35), 0 5px 20px rgba(243, 49, 128, 0.25), 0 15px 40px rgba(243, 49, 128, 0.75), inset 0 0 15px rgba(255, 255, 255, 0.05);
   overflow: hidden;
 }
-.card-profile_user-infos a:after {
+.card-profile_user-infos .recipe_check:after {
   content: '';
   font-style: normal;
   position: absolute;

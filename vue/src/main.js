@@ -78,7 +78,7 @@ const store = new Vuex.Store({
           user_recipes.map(recipe => (
             state.user_recipes_dict[recipe.recipe_id] = true
           ))
-
+console.log(state.user_recipes_dict)
         }
       },
          
