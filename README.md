@@ -1,6 +1,6 @@
-<img src="https://res.cloudinary.com/di449masi/image/upload/v1608580199/Screenshot_2020-12-21_at_2.49.33_PM_niwo8i.png"></img>
+<img src="https://res.cloudinary.com/di449masi/image/upload/v1613399855/Screen_Shot_2021-02-15_at_9.36.25_AM_pju4f5.png"></img>
 
-# Movie-Application
+# Food-Search
 
 # Description : 
 A Movie Application that lets you view movie data, save the movie into your favorites list delete it, and recommend movies as well.
