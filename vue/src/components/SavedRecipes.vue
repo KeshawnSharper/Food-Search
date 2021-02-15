@@ -6,7 +6,7 @@
       <button v-on:click="search" type="submit" class="searchButton">
         <i class="fa fa-search"></i>
      </button>
-     <router-link :to="{ name: 'home',params: { id: id }}"><p class="saved_recipes">Saved Recipes</p></router-link>
+     <router-link :to="{ name: 'home',params: { id: id }}"><p class="saved_recipes">Home</p></router-link>
    </div>
 </div>
 <div class="grid-container" v-if="this.recipes">
