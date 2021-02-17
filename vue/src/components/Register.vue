@@ -70,7 +70,7 @@
 			<p><a href="#" ><small>Forgot Password ?</small></a></p>	
 		</div>
 		<div class="form-item">
-		<router-link :to="{ name: 'login'}"><p class="pull-left"><a href="#"><small>Register</small></a></p></router-link>
+		<router-link :to="{ name: 'login'}"><p class="pull-left"><a href="#"><small></small></a>Login</p></router-link>
 		<div class="clear-fix"></div>
 		</div>
      <button>Submit</button>
