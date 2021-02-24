@@ -16,7 +16,7 @@
     <div class="card-profile_user-stats">
       <div class="stats-holder">
         <div class="user-stats">
-          <strong>Spoonacular Score</strong>
+          <strong>spoonacular Score</strong>
           <span>{{this.recipe.spoonacularScore}}</span>
         </div>
         <div class="user-stats">
