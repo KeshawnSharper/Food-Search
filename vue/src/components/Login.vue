@@ -53,7 +53,7 @@
 </svg>
 </div>
   <form @submit.prevent="submit">
-			<p v-if="this.error_user" class="error">Invalid Credentials, Try again </p>
+			<p v-if="this.error_user" class="error">Invalid Credentials, try again </p>
 			<p v-if="this.error_blank" class="error">Please fill out form</p>
 			<p class="formLabel">Username</p>
 		<div class="form-item">
